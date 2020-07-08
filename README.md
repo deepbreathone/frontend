@@ -1,5 +1,7 @@
 # deepbreathone-chat
 
+[DEMO](https://deepbreathone-chat.herokuapp.com/)
+
 ## Project setup
 ```
 npm install
