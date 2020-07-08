@@ -1,0 +1,77 @@
+<template>
+  <div class="typing-indicator">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'TypingIndicator',
+  props: {
+    msg: String,
+    isUserMessage: Boolean
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="scss">
+.typing-indicator {
+  $ti-color-bg: #00b0ff;
+  background-color: $ti-color-bg;
+  will-change: transform;
+  width: auto;
+  border-radius: 50px;
+  padding: 10px;
+  display: table;
+  margin: 0 auto 0 0;
+  position: relative;
+  animation: 2s bulge infinite ease-out;
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: -2px;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: $ti-color-bg;
+  }
+  &::after {
+    height: 10px;
+    width: 10px;
+    left: -10px;
+    bottom: -10px;
+  }
+  span {
+    height: 10px;
+    width: 10px;
+    float: left;
+    margin: 0 1px;
+    background-color: #ffffff;
+    display: block;
+    border-radius: 50%;
+    opacity: 0.4;
+    @for $i from 1 through 3 {
+      &:nth-of-type(#{$i}) {
+        animation: 1s blink infinite ($i * .3333s);
+      }
+    }
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes bulge {
+  50% {
+    transform: scale(1.05);
+  }
+}
+</style>
